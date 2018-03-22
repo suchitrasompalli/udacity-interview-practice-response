@@ -57,9 +57,9 @@ It involves using of lists of known passwords to break into systems. Application
 
 Example:
 Lists of known passwords are used to break into system.
-If there is no automatic threat protection Application can be used to determine if credentials are valid.
+If there is no automatic threat protection application can be used to determine if credentials are valid.
 
-Some things to prevent are, using mullti factor authentication.
+Some things to prevent are, using multifactor authentication.
 Not shipping or deploying with default credentials. Making sure to implement a session timeout.
 
 **Cross Site Scripting.**
