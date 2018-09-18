@@ -46,7 +46,7 @@ Example: SQL injection
 String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
 
 The attacker modifies the ‘id’ parameter value in
-their browser to send: ' or '1'='1
+their browser to send: '106 or 1=1'
 ```
 We can prevent them by keeping data separate from commands, use of safe API that avoids use of interpretor entirely or provides a parametrized interface to access the interpretor or use of ORMs.
 Also we can use positive white list for server side validation.
